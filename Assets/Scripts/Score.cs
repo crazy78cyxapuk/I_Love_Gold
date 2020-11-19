@@ -1,13 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Score : MonoBehaviour
 {
     private int countScore = 0;
 
+    [Header("Звук при попадании монетки в сундук")]
     [SerializeField] private AudioClip soundCoin;
     private AudioSource music;
+
+    [Header("Текст для отображения кол-ва очков")]
+    [SerializeField] private TextMeshProUGUI scoreTMP;
 
     private void Start()
     {
@@ -31,6 +36,7 @@ public class Score : MonoBehaviour
     private void PlusScore()
     {
         countScore += 5;
+        scoreTMP.text = countScore.ToString();
 
         PlaySound();
     }
