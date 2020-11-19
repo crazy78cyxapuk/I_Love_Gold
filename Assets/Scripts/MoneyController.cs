@@ -16,4 +16,18 @@ public class MoneyController : MonoBehaviour
     {
         rb.velocity = new Vector3(0, speed, 0);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            MoneySpawn.Instance.DespawnMoney(gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("Chest"))
+        {
+            MoneySpawn.Instance.DespawnMoney(gameObject);
+
+        }
+    }
 }

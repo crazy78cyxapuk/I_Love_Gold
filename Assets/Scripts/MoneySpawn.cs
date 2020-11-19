@@ -19,14 +19,24 @@ public class MoneySpawn : MonoBehaviour
     private List<GameObject> allMoneys = new List<GameObject>();
     private ManagerPool managerPool = new ManagerPool();
 
+    private static MoneySpawn instance;
+    public static MoneySpawn Instance => instance;
+
     private void Awake()
     {
+        InitializationSingleton();
         managerPool.AddPool(PoolType.Entities);
     }
 
     private void Start()
     {
         StartCoroutine(Spawn());
+    }
+
+    private void InitializationSingleton()
+    {
+        if (instance != null && instance != this) Destroy(gameObject);
+        else instance = this;
     }
 
     /// <summary>
@@ -51,7 +61,7 @@ public class MoneySpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// Деспавн объекта
+    /// Деспавн монетки
     /// </summary>
     public void DespawnMoney(GameObject obj)
     {
