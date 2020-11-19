@@ -9,6 +9,10 @@ public class MoneySpawn : MonoBehaviour
 
     [Header("Первоначальная скорость монетки")]
     [SerializeField] private float speed;
+    private float firstSpeed;
+
+    [Header("На сколько % увеличивать скорость монетки со временем")]
+    [SerializeField] private float enlargeSpeed = 20;
 
     [Header("В каких местах спавнить монетки")]
     [SerializeField] private Transform[] placeSpawn;
@@ -18,6 +22,9 @@ public class MoneySpawn : MonoBehaviour
 
     private List<GameObject> allMoneys = new List<GameObject>();
     private ManagerPool managerPool = new ManagerPool();
+
+    [Header("Объект 'Score' ")]
+    [SerializeField] private Score score = new Score();
 
     private static MoneySpawn instance;
     public static MoneySpawn Instance => instance;
@@ -30,6 +37,8 @@ public class MoneySpawn : MonoBehaviour
 
     private void Start()
     {
+        firstSpeed = speed;
+
         StartCoroutine(Spawn());
     }
 
@@ -56,15 +65,29 @@ public class MoneySpawn : MonoBehaviour
     /// </summary>
     private void InitializationMoney()
     {
-        allMoneys.Add(managerPool.Spawn(PoolType.Entities, prefabMoney, placeSpawn[0].position));
+        int rand = Random.Range(0, placeSpawn.Length);
+
+        allMoneys.Add(managerPool.Spawn(PoolType.Entities, prefabMoney, placeSpawn[rand].position));
         allMoneys[allMoneys.Count - 1].GetComponent<MoneyController>().speed = speed;
     }
 
     /// <summary>
     /// Деспавн монетки
     /// </summary>
-    public void DespawnMoney(GameObject obj)
+    public void DespawnMoney(GameObject obj, bool isChest)
     {
-        managerPool.Despawn(PoolType.Entities, obj);
+        if (isChest)
+        {
+            managerPool.Despawn(PoolType.Entities, obj);
+
+            if (score.isEnlargeSpeedMoney())
+            {
+                speed += (speed * enlargeSpeed) / 100f;
+            }
+        }
+        else
+        {
+            managerPool.Despawn(PoolType.Entities, obj);
+        }
     }
 }

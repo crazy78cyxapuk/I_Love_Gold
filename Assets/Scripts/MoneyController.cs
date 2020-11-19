@@ -21,12 +21,12 @@ public class MoneyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            MoneySpawn.Instance.DespawnMoney(gameObject);
+            MoneySpawn.Instance.DespawnMoney(gameObject, false);
         }
 
         if (collision.gameObject.CompareTag("Chest"))
         {
-            MoneySpawn.Instance.DespawnMoney(gameObject);
+            MoneySpawn.Instance.DespawnMoney(gameObject, true);
 
         }
     }
