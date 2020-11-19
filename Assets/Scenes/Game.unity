@@ -124,6 +124,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &31986185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5144898644275265995, guid: affeae24235c4ff49af641712dd11bc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5778534385316358151}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e485126e634cb6044b757dad39d1a5e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &106848087
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,6 +148,9 @@ GameObject:
   - component: {fileID: 106848091}
   - component: {fileID: 106848090}
   - component: {fileID: 106848089}
+  - component: {fileID: 106848092}
+  - component: {fileID: 106848093}
+  - component: {fileID: 106848094}
   m_Layer: 0
   m_Name: NewGame
   m_TagString: Untagged
@@ -205,7 +220,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 106848090}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 106848094}
+        m_TargetAssemblyTypeName: AnimationController, Assembly-CSharp
+        m_MethodName: PlayAnim
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Play
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 31986185}
+        m_TargetAssemblyTypeName: MoneySpawn, Assembly-CSharp
+        m_MethodName: NewGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &106848090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +283,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106848087}
   m_CullTransparentMesh: 0
+--- !u!111 &106848092
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106848087}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 43b0aec01b17cdf42b6b466cebf38db0, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!95 &106848093
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106848087}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 477f0a209709ae14b9118a69a4eb37ba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &106848094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106848087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f139b53d438f8409598fb1d403ddc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &121228584
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,6 +768,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 611434355}
+  - component: {fileID: 611434356}
   m_Layer: 0
   m_Name: '[UI]'
   m_TagString: Untagged
@@ -705,6 +792,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &611434356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611434354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab389cfb38b01bb4ca2e6e626f87ad56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameScreen: {fileID: 1207096951}
+  LoadScreen: {fileID: 908043095}
+  timer: 3
 --- !u!4 &682078110 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5113379397764485619, guid: affeae24235c4ff49af641712dd11bc1,
@@ -732,7 +834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &908043096
 Transform:
   m_ObjectHideFlags: 0
@@ -838,7 +940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1207096952
 Transform:
   m_ObjectHideFlags: 0
@@ -917,7 +1019,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 150
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5363696ce2c605c4ba4a20dabaa25a47, type: 2}
   m_sharedMaterial: {fileID: -1397246482767949106, guid: 5363696ce2c605c4ba4a20dabaa25a47,

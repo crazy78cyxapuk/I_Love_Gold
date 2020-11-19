@@ -24,7 +24,7 @@ public class MoneySpawn : MonoBehaviour
     private ManagerPool managerPool = new ManagerPool();
 
     [Header("Объект 'Score' ")]
-    [SerializeField] private Score score = new Score();
+    [SerializeField] private Score score;
 
     private static MoneySpawn instance;
     public static MoneySpawn Instance => instance;
@@ -38,8 +38,6 @@ public class MoneySpawn : MonoBehaviour
     private void Start()
     {
         firstSpeed = speed;
-
-        StartCoroutine(Spawn());
     }
 
     private void InitializationSingleton()
@@ -48,9 +46,25 @@ public class MoneySpawn : MonoBehaviour
         else instance = this;
     }
 
-    /// <summary>
-    /// Бесконечная корутина для создания монеток
-    /// </summary>
+    public void NewGame()
+    {
+        if (allMoneys.Count > 0)
+        {
+            Debug.Log(123);
+            for (int i = 0; i < allMoneys.Count; i++)
+            {
+                DespawnMoney(allMoneys[i], false);
+            }
+        }
+
+        speed = firstSpeed;
+        score.scoreTMP.text = "0";
+        score.countScore = 0;
+
+        StopAllCoroutines();
+        StartCoroutine(Spawn());
+    }
+
     IEnumerator Spawn()
     {
         InitializationMoney();
@@ -60,9 +74,6 @@ public class MoneySpawn : MonoBehaviour
         StartCoroutine(Spawn());
     }
 
-    /// <summary>
-    /// Создание и инициализация созданной монетки
-    /// </summary>
     private void InitializationMoney()
     {
         int rand = Random.Range(0, placeSpawn.Length);
@@ -71,9 +82,6 @@ public class MoneySpawn : MonoBehaviour
         allMoneys[allMoneys.Count - 1].GetComponent<MoneyController>().speed = speed;
     }
 
-    /// <summary>
-    /// Деспавн монетки
-    /// </summary>
     public void DespawnMoney(GameObject obj, bool isChest)
     {
         if (isChest)

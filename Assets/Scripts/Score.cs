@@ -5,14 +5,14 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
-    private int countScore = 0;
+    [HideInInspector] public int countScore = 0;
 
     [Header("Звук при попадании монетки в сундук")]
     [SerializeField] private AudioClip soundCoin;
     private AudioSource music;
 
     [Header("Текст для отображения кол-ва очков")]
-    [SerializeField] private TextMeshProUGUI scoreTMP;
+    public TextMeshProUGUI scoreTMP;
 
     private void Start()
     {
